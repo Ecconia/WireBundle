@@ -1,8 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using LogicWorld.Server.Circuitry;
 using LogicAPI.Server.Components;
 
 using WireBundle.Server;
@@ -13,22 +8,26 @@ namespace WireBundle.Components
     {
         protected override void Initialize()
         {
-            Bundlers.Components.Add(((OutputPeg)this.Outputs[0]).oAddress, this);
+            Bundlers.Components.Add(Outputs[0].Address, this);
         }
 
         public override void OnComponentDestroyed()
         {
-            Bundlers.Components.Remove(((OutputPeg)this.Outputs[0]).oAddress);
+            Bundlers.Components.Remove(Outputs[0].Address);
         }
 
         protected override void DoLogicUpdate()
         {
             bool active = false;
-            for (int i = 0; i < base.Inputs.Count; i++)
+            foreach(var input in Inputs)
             {
-                if (base.Inputs[i].On) { active = true; }
+                if(input.On)
+                {
+                    active = true;
+                    break;
+                }
             }
-            base.Outputs[0].On = active;
+            Outputs[0].On = active;
         }
     }
 }

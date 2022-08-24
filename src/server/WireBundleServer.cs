@@ -1,16 +1,9 @@
 using System.Collections.Generic;
 
-using LogicWorld.Server.Circuitry;
-using LogicAPI.Server.Components;
 using LogicAPI.Server;
 using LogicAPI.Data;
-using LogicLog;
-using LogicWorld.LogicCode;
-
 
 using WireBundle.Components;
-
-using LICC;
 
 namespace WireBundle.Server
 {
@@ -24,6 +17,6 @@ namespace WireBundle.Server
 
     public static class Bundlers
     {
-        public static Dictionary<OutputAddress, Bundler> Components = new Dictionary<OutputAddress, Bundler>();
+        public static readonly Dictionary<PegAddress, Bundler> Components = new Dictionary<PegAddress, Bundler>();
     }
 }
